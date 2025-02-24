@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Fetch</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/css.css">
+</head>
+<body>
+    <h1>JavaScript AJAX</h1>
+    <p>Asyncron JavaScript and XML ( Men man behöver inte använda XML eller ens json...)
+    </p>
+    <p> XMLHttpRequest Object - är den gamla stilen . Den är lite klumpig därför tittar vi på 
+    </p>
+    
+    <pre>
+        <code>
+            // Create an XMLHttpRequest object
+            const xhttp = new XMLHttpRequest();
+
+            // Define a callback function
+            xhttp.onload = function() {
+            // Here you can use the Data
+            }
+
+            // Send a request
+            xhttp.open("GET", "ajax_info.txt");
+            xhttp.send();
+        </code>
+    </pre>
+    <h1>Fetch API istället</h1>
+    <p>Asyncron JavaScript and XML ( Men man behöver inte använda XML eller ens json...)
+    </p>
+    <p> XMLHttpRequest Object - är den gamla stilen . Den är lite klumpig därför tittar vi på 
+    </p>
+    
+    <pre>
+        <code>
+            fetch(file)
+            .then(myObject => myObject.text())
+            .then(myText => myDisplay(myText));
+
+            //eller
+
+            async function getText(file) {
+            let myObject = await fetch(file);
+            let myText = await myObject.text();
+            myDisplay(myText);
+            }
+        </code>
+    </pre>
+    <p>Exempel</p>
+    <pre>
+        <code>
+
+    --------------------------------------
+    fetchData = function() {
+        var fetchData = document.getElementById('fetchData');
+        fetch('getdata.php')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                fetchData.innerHTML = data
+            })
+            .catch(error => console.error(error))
+    }
+    ---------------
+    &lt;?php
+    $svar = "svar";
+    echo json_encode($svar);
+    ?&gt;
+    ---------------
+    &lt;body&gt;
+    &lt;div id="fetchData"&gt;&lt;/div&gt;
+    &lt;button onclick="fetchData()"&gt;Fetch Data&lt;/button&gt;
+    &lt;/body&gt;
+</code>
+</pre>
+
+</body>
+</html>
