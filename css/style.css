@@ -1,0 +1,392 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+}
+.back {
+  font-size: 0.7em;
+  background-color: #f0f0f0;
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: auto;
+}
+textarea {
+  width: 100%;
+  height: 150px;
+}
+button {
+  margin-top: 10px;
+}
+.file {
+  list-style-type: none;
+  font-size: 0.8em;
+}
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: auto;
+}
+.category {
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+.category:hover {
+  background: #ddd;
+}
+.file-list {
+  display: none;
+  margin-left: 20px;
+}
+
+/* Notifieringsstil */
+.notify {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: rgb(254, 254, 254);
+  font-weight: bold;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1000;
+  min-width: 200px;
+  text-align: center;
+}
+
+/* Färg för framgång */
+.notify.success {
+  background-color: #4caf50;
+}
+
+/* Färg för fel */
+.notify.error {
+  background-color: #d32f2f;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+.menuitem {
+  padding: 5px;
+  display: inline-block;
+  width: 100%;
+}
+.menuitem:hover {
+  background-color: #f1f1f1;
+}
+
+/* Grundläggande meny-styling */
+.menu {
+  background: #333;
+  color: white;
+  padding: 10px;
+  position: relative;
+}
+.menu li {
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.menu > ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.menu > ul > li {
+  padding: 10px;
+  position: relative;
+}
+
+.menu > ul > li > a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+}
+
+/* Dropdown-nivå 1 (ämnen) */
+.menu > ul > li > .dropdown {
+  display: none;
+  position: absolute;
+  background: white;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+/* Dropdown-nivå 2 (kategorier) */
+.menu > ul > li > .dropdown > li {
+  position: relative;
+}
+
+.menu > ul > li > .dropdown > li > .sub-dropdown {
+  display: none;
+  position: absolute;
+  background: white;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 100%; /* Starta direkt till höger om övermenyn */
+  min-width: 200px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Visa undermenyer endast när man hovrar */
+.menu > ul > li:hover > .dropdown,
+.menu > ul > li > .dropdown > li:hover > .sub-dropdown {
+  display: block;
+}
+
+/* Lägg till en osynlig zon mellan nivåerna för att undvika att menyn stängs */
+.menu > ul > li > .dropdown > li {
+  padding: 7px;
+  position: ;
+}
+
+.menu > ul > li > .dropdown > li:hover {
+  background: #f1f1f1;
+}
+
+/* Fixa så att undermenyer inte stänger sig när musen flyttas */
+.menu > ul > li > .dropdown > li {
+  padding-right: 30px; /* Gör att man kan flytta musen till höger utan att menyn stängs */
+}
+h3.sub {
+  background-color: dimgrey;
+  color: white;
+  border-top:#333 1px solid; 
+  font-size: 0.9em; 
+  padding: 5px 1px 1px 6px;
+}
+
+
+.view {
+  position: relative;
+  width: 800px;
+  margin-left: 210px;
+  #editview {
+    position: absolute;
+    right:0;
+    top:20px;
+  }
+  ul {
+    padding: 0px;
+    margin: 0px;
+  }
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+  code {
+    padding: 2px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: "Courier New", Courier, monospace;
+    /* Behöver ha en radbrytning */
+    overflow-x: auto;
+
+}
+.language-javascript,
+.language-csharp,
+.language-php,
+.language-python,
+.language-java,
+.language-html,
+.language-css,
+.language-sql,
+.language-markdown,
+.language-json,
+.language-xml,
+.language-yaml,
+.language-bash,
+.language-cpp,
+.language-c,
+.language-ruby,
+.language-perl,
+.language-swift,
+.language-objectivec,
+.language-go,
+.language-rust,
+.language-kotlin,
+.language-scala,
+.language-groovy,
+.language-coffeescript,
+.language-typescript {
+  margin: 10px;
+  padding: 10px;
+  display: block;
+}
+  .language-bash {
+    background-color: #333;
+    color: white;
+  }
+  th{
+    text-align: left;
+    margin-bottom: 2px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin: 20px 0 5px 0;
+  }
+  h2 {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    margin: 20px 0 5px 0;
+  }
+  h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0 5px 0;
+  }
+  p {
+    margin: 7px 0;
+  }
+}
+
+.autocomplete-list {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 200px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+}
+
+.autocomplete-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+    background: #f1f1f1;
+}
+
+#kategori_container {
+  width: 1000px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  #kategori_meny {
+    position: fixed;
+    width: 200px;
+    margin-right: 10px;
+    li {
+      list-style-type: none;
+      padding: 3px;
+      background-color: #f1f1f1;
+      margin-bottom: 3px;
+      cursor: pointer;
+      font-size: .8em;
+    }
+    li:hover{
+      background-color: #ddd;
+    }
+    a {
+      padding-left:4px;
+      display: block;
+    }
+    .active {
+      background-color: #ddd;
+    }
+  }
+}
+.file{
+  span{
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: aquamarine;
+    cursor: pointer;
+    padding: 2px;
+  }
+}
+.imagelist{
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.imagelist::-webkit-scrollbar {
+  width: 8px; /* Gör scrollbaren smalare */
+}
+
+.imagelist::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.imagelist::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.imagelist::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#dropZone {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+}
+
+#dropZone.hover {
+  background: #e0e0e0;
+}
+
+#uploadStatus {
+  list-style: none;
+  padding: 0;
+}
+
+.collapsed {
+  display: none;
+}
+/* Standardpil: pekar åt höger när menyn är stängd */
+.sub::after {
+  content: "▶";
+  margin-left: 10px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* När .sub har klassen .expanded, rotera pilen (nu pekar den nedåt) */
+.sub.expanded::after {
+  transform: rotate(90deg);
+}
