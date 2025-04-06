@@ -3,9 +3,10 @@
 require_once "functions.php";
 $menu_menu = getSubjectsAndCategories();
 ?>
-<div class="menu">
+<div class="menu-container">
+    <li id="logo"><a href="index.php"><img src="images/docx(final).png"></a></li>
+    <div class="menu">
     <ul>
-        <li><a href="index.php">📂 Hem</a></li>
         <?php foreach ($menu_menu as $menu_subject => $menu_categories): ?>
             <li>
                 <?= htmlspecialchars($menu_subject) ?> ▼
@@ -26,20 +27,12 @@ $menu_menu = getSubjectsAndCategories();
         <?php
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
             ?>
-            <li><a href="upload.php">⬆️ Ladda upp</a></li>
-        <li>🔧 Admin ▼
-          <ul class="dropdown">
-            <li><a href="logout.php"?>Logga ut</a></li>
-          </ul>
-        </li>
+            <li><a href="upload.php" title="Upload">⬆️</a></li>
+            <li><a href="logout.php" title="Logout">❌</a></li>
         <?php } else { ?> 
-            <li>🔧 Admin ▼
-          <ul class="dropdown">
-            <li><a href="login.php"?>Logga in</a></li>
-          </ul>
-        </li>
-
+            <li><a href="login.php" title="Login">🔧</a></li>
             <?php } ?>
     </ul>
+</div>
 </div>
 <div id="notify" class="notify"></div>

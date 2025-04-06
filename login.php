@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- Notifieringsruta (bör vara på alla sidor) -->
 
     <h1>Logga in</h1>
-    <form action="login.php" method="post">
-        <input type="password" name="password" placeholder="Lösenord" required>
+    <form action="login.php" method="post" autocomplete="off">
+        <input type="password" name="password" placeholder="Lösenord" required autocomplete="new-password">
         <button type="submit">Logga in</button>
     </form>
     <script src="js/script.js"></script>

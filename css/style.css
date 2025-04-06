@@ -3,6 +3,22 @@
   margin: 0;
   font-family: "Arial", sans-serif;
 }
+#logo{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  img {  width: 60px;
+  height: auto;
+  margin: 0px;
+  }
+}
+.menu-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #333;
+  color: white;
+}
 .back {
   font-size: 0.7em;
   background-color: #f0f0f0;
