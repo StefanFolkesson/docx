@@ -4,7 +4,9 @@ require_once "functions.php";
 $menu_menu = getSubjectsAndCategories();
 ?>
 <div class="menu-container">
-    <li id="logo"><a href="index.php"><img src="images/docx(final).png"></a></li>
+  <ul id="logo">
+    <li ><a href="index.php"><img src="images/docx(final).png"></a></li>
+</ul>
     <div class="menu">
     <ul>
         <?php foreach ($menu_menu as $menu_subject => $menu_categories): ?>
@@ -27,8 +29,8 @@ $menu_menu = getSubjectsAndCategories();
         <?php
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
             ?>
-            <li><a href="upload.php" title="Upload">⬆️</a></li>
-            <li><a href="logout.php" title="Logout">❌</a></li>
+            <li class="ul"><a href="upload.php" title="Upload">⬆️</a></li>
+            <li class="admin"><a href="logout.php" title="Logout">❌</a></li>
         <?php } else { ?> 
             <li><a href="login.php" title="Login">🔧</a></li>
             <?php } ?>

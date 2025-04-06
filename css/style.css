@@ -7,9 +7,13 @@
   list-style-type: none;
   margin: 0px;
   padding: 0px;
-  img {  width: 60px;
-  height: auto;
-  margin: 0px;
+  li{
+    height: 60px;
+  }
+  img {  
+    width: 60px;
+    height: auto;
+    margin: 0px;
   }
 }
 .menu-container {
@@ -18,6 +22,14 @@
   align-items: center;
   background-color: #333;
   color: white;
+  .ul{
+    padding-right: 0px;
+    margin-right: 0px;
+  }
+  .admin {
+    padding-left: 0px;
+    margin-left: 0px;
+  }
 }
 .back {
   font-size: 0.7em;
