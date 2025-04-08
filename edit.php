@@ -30,7 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $ok=false;
      
     }
-    header("Location: view.php?file=$file");
+
+//    header("Location: view.php?file=$file");
 }
 // Kontrollera om filen finns
 if (!$file || !file_exists($filePath)) {
@@ -59,12 +60,6 @@ foreach ($lines as $line) {
     }
 }
 
-// Läs in metadata
-$subject = $metadata['ämne'] ?? 'Övrigt';
-$category = $metadata['kategori'] ?? 'Okategoriserad';
-$title = $metadata['titel'] ?? basename($file, ".md");
-$sub = $metadata['sub'] ?? '';
-
 
 ?>
 <!DOCTYPE html>
@@ -76,11 +71,18 @@ $sub = $metadata['sub'] ?? '';
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php require "menu.php"; ?>
+    <?php 
+    require "menu.php"; 
+    $subject = $metadata['ämne'] ?? 'Övrigt';
+    $category = $metadata['kategori'] ?? 'Okategoriserad';
+    $title = $metadata['titel'] ?? basename($file, ".md");
+    $sub = $metadata['sub'] ?? '';
+    ?>
     <h1>Redigera <?= htmlspecialchars($file) ?></h1>
 
     <form action="edit.php?file=<?= urlencode($file) ?>" method="post">
-        <button type="submit">Spara ändringar</button>
+        <button type="submit" id="save_button">Spara ändringar</button>
+        <button type="button" id="view_button" onclick="goTo('<?= urlencode($file) ?>');">Se dokument</button>
         <h3>YAML-metadata</h3>
         <div style="display:flex; justify-content: space-between;">
             <div>

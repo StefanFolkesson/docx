@@ -102,4 +102,22 @@ function showNotification(message, type) {
             });
         });
     });
-    
+    document.addEventListener('keydown', function(e) {
+        // Kolla om Ctrl (eller Cmd på Mac) och "s" trycks ned
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+          e.preventDefault(); // Förhindrar webbläsarens standardfunktion (spara sidan)
+          e.stopPropagation();   // Förhindra att eventet fortsätter spridas
+          // Hitta knappen med id "myButton" och simulera ett klick
+          document.getElementById('save_button').click();
+        }
+      },true);
+      function goTo(file) {
+        // Skapa den relativa sökvägen med "view.php" istället för "edit.php"
+        const relativePath = "view.php?file=" + encodeURIComponent(file);
+        
+        // Skapar ett URL-objekt baserat på den aktuella adressen (med origin och underkataloger)
+        const url = new URL(relativePath, window.location.href);
+        
+        // Uppdaterar webbläsarens adressfält utan att ladda om sidan
+        window.location.href = url; // Ladda den nya sidan
+      }      

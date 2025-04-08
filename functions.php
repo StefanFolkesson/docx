@@ -48,24 +48,28 @@ function getSubjectsAndCategories() {
 
         $menu[$subject][$category][] = [
             'file' => basename($file),
+            'subject' => $subject,
+            'category' => $category,
             'title' => $title,
             'sub' => $sub
         ];
         // Sort on title
         // Sort on Sub then on title
-
-        usort($menu[$subject][$category], function($a, $b) {
-            return strcmp($a['title'], $b['title']);
-        });
-
-        usort($menu[$subject][$category], function($a, $b) {
-            return strcmp($a['sub'], $b['sub']);
-        });
-
-
-        /*usort($menu[$subject][$category], function($a, $b) {
-            return strcmp($a['title'], $b['title']);
-        });*/
+    }
+    // menu consist of subjects, categories and titles and subs
+    // Sort the menu by subject and category and then sub and lastly title
+    ksort($menu);
+    foreach ($menu as $subject => &$categories) {
+        ksort($categories);
+        foreach ($categories as $category => &$files) {
+            usort($files, function($a, $b) {
+                $subComparison = strcmp($a['sub'], $b['sub']);
+                if ($subComparison === 0) {
+                    return strcmp($a['title'], $b['title']);
+                }
+                return $subComparison;
+            });
+        }
     }
 
     return $menu;

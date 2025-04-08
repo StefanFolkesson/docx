@@ -2,6 +2,7 @@
 // Läs in ämnen och kategorier från filerna
 require_once "functions.php";
 $menu_menu = getSubjectsAndCategories();
+$sub="";
 ?>
 <div class="menu-container">
   <ul id="logo">
@@ -18,11 +19,20 @@ $menu_menu = getSubjectsAndCategories();
                             <?= htmlspecialchars($menu_category) ?> ►
                             <ul class="sub-dropdown">
                                 <?php foreach ($menu_files as $menu_file):  ?>
-                                <li><a class='menuitem' href="view.php?file=<?= urlencode($menu_file['file']) ?>"><?= htmlspecialchars(basename($menu_file['title'], ".md")) ?></a></li>
-                    <?php endforeach; ?>
+                                    <?php if($menu_file['sub']!=null && $menu_file['sub'] != $sub) { 
+                                        echo "<h3 class='sub'>" . htmlspecialchars($menu_file['sub']) . "</h3>";
+                                        $sub = $menu_file['sub'];
+                                    } ?>
+
+                                    <li>
+                                        <a class='menuitem' href="view.php?file=<?= urlencode($menu_file['file']) ?>">
+                                            <?= htmlspecialchars($menu_file['title']) ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </li>
-        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </ul>
             </li>
         <?php endforeach; ?>
