@@ -112,7 +112,7 @@ a {
   padding: 5px;
   display: inline-block;
   width: 100%;
-  
+
 }
 .menuitem:hover {
   background-color: #f1f1f1;
@@ -418,4 +418,19 @@ h3.sub {
 /* När .sub har klassen .expanded, rotera pilen (nu pekar den nedåt) */
 .sub.expanded::after {
   transform: rotate(90deg);
+}
+
+#google_translate_element {
+  position: absolute;
+  left: -9999px; /* Placera utanför skärmen */
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+/* Tar bort översättningsbaren som Google ibland visar överst på sidan */
+.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0px !important;
 }

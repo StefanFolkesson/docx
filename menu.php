@@ -46,5 +46,9 @@ $sub="";
             <?php } ?>
     </ul>
 </div>
+<label id="lan_lbl">Svenska</label>
+<input type="checkbox" id="translateCheckbox">
 </div>
+<div id="google_translate_element"></div>
+
 <div id="notify" class="notify"></div>

@@ -71,6 +71,7 @@ $html = $Parsedown->text($content);
             <div><?= $html ?></div>
         </div>
     </div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

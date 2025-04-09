@@ -82,7 +82,7 @@ foreach ($lines as $line) {
 
     <form action="edit.php?file=<?= urlencode($file) ?>" method="post">
         <button type="submit" id="save_button">Spara ändringar</button>
-        <button type="button" id="view_button" onclick="goTo('<?= urlencode($file) ?>');">Se dokument</button>
+        <button type="button" id="view_button" onclick="goTo('<?= $file ?>');">Se dokument</button>
         <h3>YAML-metadata</h3>
         <div style="display:flex; justify-content: space-between;">
             <div>
