@@ -189,7 +189,6 @@ a {
 /* Lägg till en osynlig zon mellan nivåerna för att undvika att menyn stängs */
 .menu > ul > li > .dropdown > li {
   padding: 7px;
-  position: ;
 }
 
 .menu > ul > li > .dropdown > li:hover {
