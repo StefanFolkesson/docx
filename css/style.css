@@ -787,7 +787,7 @@ button, input[type="submit"], input[type="button"], .category, .file span {
   }
 
   .menu > ul > li {
-    padding: 12px 8px;
+    padding: 12px 0px;
   }
 
   .category {
