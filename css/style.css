@@ -329,6 +329,10 @@ pre[class*='language-'] {
     }
   }
 }
+button, a, .category, .file span {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+}
 .file{
   span{
     display: inline-block;
@@ -344,12 +348,15 @@ pre[class*='language-'] {
   justify-content: space-between;
 }
 
-.imagelist{
+
+.imagelist {
   max-height: 100px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* ADD THIS */
   border: 1px solid #ccc;
   padding: 5px;
 }
+
 .imagelist::-webkit-scrollbar {
   width: 8px; /* Gör scrollbaren smalare */
 }
@@ -445,11 +452,17 @@ button, input[type="submit"], input[type="button"], .category, .file span {
     margin: 0;
     padding: 0;
     font-size: 16px; /* Prevent zoom on iOS */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Make tables scrollable on mobile - preserve semantics */
   .view {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* ADD THIS */
   }
 
   .view table {
@@ -464,8 +477,10 @@ button, input[type="submit"], input[type="button"], .category, .file span {
 
   /* Touch-friendly links in navigation */
   .menu a, .menuitem {
-    min-height: 10px;
-    padding: 2px 5px;
+  min-height: 20px;
+  padding: 10px 5px;
+  display: flex;
+  align-items: center;
   }
 
   /* Menu container - stack vertically on mobile */
@@ -549,7 +564,7 @@ button, input[type="submit"], input[type="button"], .category, .file span {
 
   /* View page layout */
   #kategori_container {
-    width: 100%;
+    width: calc(100% - 20px);
     flex-direction: column;
     padding: 10px;
   }
@@ -557,12 +572,12 @@ button, input[type="submit"], input[type="button"], .category, .file span {
   #kategori_meny {
     display: none;
     position: static;
-    width: 100%;
+    width: calc(100% - 20px);
     margin-bottom: 20px;
   }
 
   .view {
-    width: 100%;
+    width: calc(100% - 20px);
     margin-left: 0;
     padding: 10px;
   }
