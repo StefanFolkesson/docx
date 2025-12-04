@@ -207,6 +207,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Apply mobile menu behavior
         if (!data.clickHandler) {
           data.clickHandler = function(e) {
+            // Om klicket kommer från en länk, låt den fungera normalt
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+              return; // Låt länken fungera
+            }
             item.classList.toggle('active');
             e.stopPropagation();
           };
@@ -217,6 +221,10 @@ document.addEventListener('DOMContentLoaded', function() {
         data.dropdownItems.forEach(function(dropdownItem, index) {
           if (!data.dropdownHandlers[index]) {
             const dropdownHandler = function(e) {
+              // Om klicket kommer från en länk, låt den fungera normalt
+              if (e.target.tagName === 'A' || e.target.closest('a')) {
+                return; // Låt länken fungera
+              }
               dropdownItem.classList.toggle('active');
               e.stopPropagation();
             };
