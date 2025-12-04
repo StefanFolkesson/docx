@@ -464,8 +464,8 @@ button, input[type="submit"], input[type="button"], .category, .file span {
 
   /* Touch-friendly links in navigation */
   .menu a, .menuitem {
-    min-height: 44px;
-    padding: 10px 5px;
+    min-height: 10px;
+    padding: 2px 5px;
   }
 
   /* Menu container - stack vertically on mobile */
@@ -499,7 +499,7 @@ button, input[type="submit"], input[type="button"], .category, .file span {
 
   .menu > ul > li {
     width: 100%;
-    padding: 15px 10px;
+    padding: 5px 2px;
     border-bottom: 1px solid #555;
   }
 
@@ -532,7 +532,7 @@ button, input[type="submit"], input[type="button"], .category, .file span {
   }
 
   .menu > ul > li > .dropdown > li > .sub-dropdown li {
-    padding: 8px 15px;
+    padding: 2px 5px;
   }
 
   /* Show dropdowns when parent is active (toggle via JavaScript) */
@@ -555,6 +555,7 @@ button, input[type="submit"], input[type="button"], .category, .file span {
   }
 
   #kategori_meny {
+    display: none;
     position: static;
     width: 100%;
     margin-bottom: 20px;
@@ -760,7 +761,7 @@ button, input[type="submit"], input[type="button"], .category, .file span {
 
   .view {
     width: calc(100% - 200px);
-    margin-left: 190px;
+    margin-left: 210px;
   }
 }
 

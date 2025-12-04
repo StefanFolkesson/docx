@@ -71,7 +71,6 @@ function getSubjectsAndCategories() {
             });
         }
     }
-
     return $menu;
 }
 
