@@ -361,6 +361,12 @@ h3.sub {
     padding: 2px;
   }
 }
+
+.yaml-metadata-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .imagelist{
   max-height: 100px;
   overflow-y: auto;
@@ -464,12 +470,18 @@ button, input[type="submit"], input[type="button"], .category, .file span {
     font-size: 16px; /* Prevent zoom on iOS */
   }
 
-  /* Make tables scrollable on mobile */
-  table {
-    display: block;
+  /* Make tables scrollable on mobile with wrapper */
+  .view table {
+    width: 100%;
     overflow-x: auto;
-    white-space: nowrap;
+    display: block;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .view table tbody,
+  .view table thead {
+    display: table;
+    width: 100%;
   }
 
   /* Touch-friendly links in navigation */
@@ -712,8 +724,6 @@ button, input[type="submit"], input[type="button"], .category, .file span {
   /* Tables on mobile */
   .view table {
     font-size: 14px;
-    display: block;
-    overflow-x: auto;
   }
 
   .view th,
