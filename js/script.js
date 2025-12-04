@@ -184,47 +184,61 @@ document
 document.addEventListener('DOMContentLoaded', function() {
   // Use matchMedia for responsive detection
   const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+  const menuItems = document.querySelectorAll('.menu > ul > li');
+  
+  // Store event handlers for cleanup
+  const handlers = new WeakMap();
   
   function handleMobileMenu() {
-    const menuItems = document.querySelectorAll('.menu > ul > li');
-    
-    if (mobileMediaQuery.matches) {
-      // Apply mobile menu behavior
-      menuItems.forEach(function(item) {
-        // Remove any existing listeners by cloning
-        const newItem = item.cloneNode(true);
-        item.parentNode.replaceChild(newItem, item);
-        
-        newItem.addEventListener('click', function(e) {
-          // Toggle active class
-          newItem.classList.toggle('active');
-          e.stopPropagation();
-        });
+    menuItems.forEach(function(item) {
+      if (mobileMediaQuery.matches) {
+        // Apply mobile menu behavior
+        if (!handlers.has(item)) {
+          const clickHandler = function(e) {
+            item.classList.toggle('active');
+            e.stopPropagation();
+          };
+          handlers.set(item, clickHandler);
+          item.addEventListener('click', clickHandler);
+        }
         
         // Handle sub-dropdown items
-        const dropdownItems = newItem.querySelectorAll('.dropdown > li');
-        dropdownItems.forEach(function(dropdownItem) {
-          dropdownItem.addEventListener('click', function(e) {
-            dropdownItem.classList.toggle('active');
-            e.stopPropagation();
-          });
-        });
-      });
-    } else {
-      // Remove mobile behavior on desktop (use CSS hover)
-      menuItems.forEach(function(item) {
-        item.classList.remove('active');
         const dropdownItems = item.querySelectorAll('.dropdown > li');
         dropdownItems.forEach(function(dropdownItem) {
+          if (!handlers.has(dropdownItem)) {
+            const dropdownHandler = function(e) {
+              dropdownItem.classList.toggle('active');
+              e.stopPropagation();
+            };
+            handlers.set(dropdownItem, dropdownHandler);
+            dropdownItem.addEventListener('click', dropdownHandler);
+          }
+        });
+      } else {
+        // Remove mobile behavior on desktop (use CSS hover)
+        const handler = handlers.get(item);
+        if (handler) {
+          item.removeEventListener('click', handler);
+          handlers.delete(item);
+        }
+        item.classList.remove('active');
+        
+        const dropdownItems = item.querySelectorAll('.dropdown > li');
+        dropdownItems.forEach(function(dropdownItem) {
+          const dropdownHandler = handlers.get(dropdownItem);
+          if (dropdownHandler) {
+            dropdownItem.removeEventListener('click', dropdownHandler);
+            handlers.delete(dropdownItem);
+          }
           dropdownItem.classList.remove('active');
         });
-      });
-    }
+      }
+    });
   }
   
   // Initial setup
   handleMobileMenu();
   
-  // Re-apply on orientation/resize changes
-  mobileMediaQuery.addListener(handleMobileMenu);
+  // Re-apply on orientation/resize changes using modern API
+  mobileMediaQuery.addEventListener('change', handleMobileMenu);
 });

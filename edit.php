@@ -84,7 +84,7 @@ foreach ($lines as $line) {
         <button type="submit" id="save_button">Spara ändringar</button>
         <button type="button" id="view_button" onclick="goTo('<?= $file ?>');">Se dokument</button>
         <h3>YAML-metadata</h3>
-        <div style="display:flex; justify-content: space-between;">
+        <div class="yaml-metadata-container" style="display:flex; justify-content: space-between;">
             <div>
                 <div style="position: relative;">
                     <label>Ämne</label><br/>

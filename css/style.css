@@ -587,8 +587,8 @@ button, input[type="submit"], input[type="button"], .category, .file span {
     width: 100%;
   }
 
-  form > div[style*="display:flex"] {
-    flex-direction: column !important;
+  .yaml-metadata-container {
+    flex-direction: column;
   }
 
   form input[type="text"],
