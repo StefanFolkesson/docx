@@ -470,18 +470,19 @@ button, input[type="submit"], input[type="button"], .category, .file span {
     font-size: 16px; /* Prevent zoom on iOS */
   }
 
-  /* Make tables scrollable on mobile with wrapper */
-  .view table {
-    width: 100%;
+  /* Make tables scrollable on mobile - preserve semantics */
+  .view {
     overflow-x: auto;
-    display: block;
-    -webkit-overflow-scrolling: touch;
+  }
+
+  .view table {
+    width: auto;
+    min-width: 100%;
   }
 
   .view table tbody,
   .view table thead {
-    display: table;
-    width: 100%;
+    display: table-row-group;
   }
 
   /* Touch-friendly links in navigation */

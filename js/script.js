@@ -186,49 +186,56 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
   const menuItems = document.querySelectorAll('.menu > ul > li');
   
-  // Store event handlers for cleanup
-  const handlers = new WeakMap();
+  // Store event handlers and cached DOM elements for cleanup
+  const itemData = new WeakMap();
+  
+  // Pre-cache dropdown items for each menu item
+  menuItems.forEach(function(item) {
+    const dropdownItems = item.querySelectorAll('.dropdown > li');
+    itemData.set(item, {
+      dropdownItems: Array.from(dropdownItems),
+      clickHandler: null,
+      dropdownHandlers: []
+    });
+  });
   
   function handleMobileMenu() {
     menuItems.forEach(function(item) {
+      const data = itemData.get(item);
+      
       if (mobileMediaQuery.matches) {
         // Apply mobile menu behavior
-        if (!handlers.has(item)) {
-          const clickHandler = function(e) {
+        if (!data.clickHandler) {
+          data.clickHandler = function(e) {
             item.classList.toggle('active');
             e.stopPropagation();
           };
-          handlers.set(item, clickHandler);
-          item.addEventListener('click', clickHandler);
+          item.addEventListener('click', data.clickHandler);
         }
         
         // Handle sub-dropdown items
-        const dropdownItems = item.querySelectorAll('.dropdown > li');
-        dropdownItems.forEach(function(dropdownItem) {
-          if (!handlers.has(dropdownItem)) {
+        data.dropdownItems.forEach(function(dropdownItem, index) {
+          if (!data.dropdownHandlers[index]) {
             const dropdownHandler = function(e) {
               dropdownItem.classList.toggle('active');
               e.stopPropagation();
             };
-            handlers.set(dropdownItem, dropdownHandler);
+            data.dropdownHandlers[index] = dropdownHandler;
             dropdownItem.addEventListener('click', dropdownHandler);
           }
         });
       } else {
         // Remove mobile behavior on desktop (use CSS hover)
-        const handler = handlers.get(item);
-        if (handler) {
-          item.removeEventListener('click', handler);
-          handlers.delete(item);
+        if (data.clickHandler) {
+          item.removeEventListener('click', data.clickHandler);
+          data.clickHandler = null;
         }
         item.classList.remove('active');
         
-        const dropdownItems = item.querySelectorAll('.dropdown > li');
-        dropdownItems.forEach(function(dropdownItem) {
-          const dropdownHandler = handlers.get(dropdownItem);
-          if (dropdownHandler) {
-            dropdownItem.removeEventListener('click', dropdownHandler);
-            handlers.delete(dropdownItem);
+        data.dropdownItems.forEach(function(dropdownItem, index) {
+          if (data.dropdownHandlers[index]) {
+            dropdownItem.removeEventListener('click', data.dropdownHandlers[index]);
+            data.dropdownHandlers[index] = null;
           }
           dropdownItem.classList.remove('active');
         });
