@@ -236,32 +236,9 @@ h3.sub {
     overflow-x: auto;
 
 }
-.language-javascript,
-.language-csharp,
-.language-php,
-.language-python,
-.language-java,
-.language-html,
-.language-css,
-.language-sql,
-.language-markdown,
-.language-json,
-.language-xml,
-.language-yaml,
-.language-bash,
-.language-cpp,
-.language-c,
-.language-ruby,
-.language-perl,
-.language-swift,
-.language-objectivec,
-.language-go,
-.language-rust,
-.language-kotlin,
-.language-scala,
-.language-groovy,
-.language-coffeescript,
-.language-typescript {
+/* Code block styling for all language classes */
+code[class*='language-'],
+pre[class*='language-'] {
   margin: 10px;
   padding: 10px;
   display: block;
@@ -660,32 +637,8 @@ button, input[type="submit"], input[type="button"], .category, .file span {
 
   /* Code blocks - horizontal scroll */
   .view code,
-  .view .language-javascript,
-  .view .language-csharp,
-  .view .language-php,
-  .view .language-python,
-  .view .language-java,
-  .view .language-html,
-  .view .language-css,
-  .view .language-sql,
-  .view .language-markdown,
-  .view .language-json,
-  .view .language-xml,
-  .view .language-yaml,
-  .view .language-bash,
-  .view .language-cpp,
-  .view .language-c,
-  .view .language-ruby,
-  .view .language-perl,
-  .view .language-swift,
-  .view .language-objectivec,
-  .view .language-go,
-  .view .language-rust,
-  .view .language-kotlin,
-  .view .language-scala,
-  .view .language-groovy,
-  .view .language-coffeescript,
-  .view .language-typescript {
+  .view code[class*='language-'],
+  .view pre[class*='language-'] {
     overflow-x: auto;
     display: block;
     white-space: pre;
@@ -842,6 +795,7 @@ button, input[type="submit"], input[type="button"], .category, .file span {
     font-size: 1.1em;
   }
 
+  /* Button sizing for small mobile - override global touch targets */
   button, input[type="submit"], input[type="button"] {
     padding: 12px;
     font-size: 14px;
