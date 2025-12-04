@@ -10,8 +10,10 @@ checkLogin();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php require "menu.php"; ?>
     <h1>Admin Panel</h1>
     <p>Välkommen! Här kan du redigera filer.</p>
     <ul>

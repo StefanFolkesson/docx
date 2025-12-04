@@ -173,7 +173,79 @@ document
 
   const inputField = document.getElementById('fileName');
 
-    inputField.addEventListener('input', function() {
-      // Ersätt alla tecken som inte är bokstäver, siffror eller understreck
-      this.value = this.value.replace(/[^A-Za-z0-9_]/g, '');
+    if (inputField) {
+      inputField.addEventListener('input', function() {
+        // Ersätt alla tecken som inte är bokstäver, siffror eller understreck
+        this.value = this.value.replace(/[^A-Za-z0-9_]/g, '');
+      });
+    }
+
+// Mobile menu toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Use matchMedia for responsive detection
+  const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+  const menuItems = document.querySelectorAll('.menu > ul > li');
+  
+  // Store event handlers and cached DOM elements for cleanup
+  const itemData = new WeakMap();
+  
+  // Pre-cache dropdown items for each menu item
+  menuItems.forEach(function(item) {
+    const dropdownItems = item.querySelectorAll('.dropdown > li');
+    itemData.set(item, {
+      dropdownItems: Array.from(dropdownItems),
+      clickHandler: null,
+      dropdownHandlers: []
     });
+  });
+  
+  function handleMobileMenu() {
+    menuItems.forEach(function(item) {
+      const data = itemData.get(item);
+      
+      if (mobileMediaQuery.matches) {
+        // Apply mobile menu behavior
+        if (!data.clickHandler) {
+          data.clickHandler = function(e) {
+            item.classList.toggle('active');
+            e.stopPropagation();
+          };
+          item.addEventListener('click', data.clickHandler);
+        }
+        
+        // Handle sub-dropdown items
+        data.dropdownItems.forEach(function(dropdownItem, index) {
+          if (!data.dropdownHandlers[index]) {
+            const dropdownHandler = function(e) {
+              dropdownItem.classList.toggle('active');
+              e.stopPropagation();
+            };
+            data.dropdownHandlers[index] = dropdownHandler;
+            dropdownItem.addEventListener('click', dropdownHandler);
+          }
+        });
+      } else {
+        // Remove mobile behavior on desktop (use CSS hover)
+        if (data.clickHandler) {
+          item.removeEventListener('click', data.clickHandler);
+          data.clickHandler = null;
+        }
+        item.classList.remove('active');
+        
+        data.dropdownItems.forEach(function(dropdownItem, index) {
+          if (data.dropdownHandlers[index]) {
+            dropdownItem.removeEventListener('click', data.dropdownHandlers[index]);
+            data.dropdownHandlers[index] = null;
+          }
+          dropdownItem.classList.remove('active');
+        });
+      }
+    });
+  }
+  
+  // Initial setup
+  handleMobileMenu();
+  
+  // Re-apply on orientation/resize changes using modern API
+  mobileMediaQuery.addEventListener('change', handleMobileMenu);
+});
