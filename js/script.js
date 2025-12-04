@@ -173,44 +173,58 @@ document
 
   const inputField = document.getElementById('fileName');
 
-    inputField.addEventListener('input', function() {
-      // Ersätt alla tecken som inte är bokstäver, siffror eller understreck
-      this.value = this.value.replace(/[^A-Za-z0-9_]/g, '');
-    });
+    if (inputField) {
+      inputField.addEventListener('input', function() {
+        // Ersätt alla tecken som inte är bokstäver, siffror eller understreck
+        this.value = this.value.replace(/[^A-Za-z0-9_]/g, '');
+      });
+    }
 
 // Mobile menu toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Handle mobile menu dropdowns
-  const menuItems = document.querySelectorAll('.menu > ul > li');
+  // Use matchMedia for responsive detection
+  const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
   
-  menuItems.forEach(function(item) {
-    // Only apply click handlers on mobile (screen width <= 768px)
-    if (window.innerWidth <= 768) {
-      item.addEventListener('click', function(e) {
-        // Toggle active class
-        item.classList.toggle('active');
+  function handleMobileMenu() {
+    const menuItems = document.querySelectorAll('.menu > ul > li');
+    
+    if (mobileMediaQuery.matches) {
+      // Apply mobile menu behavior
+      menuItems.forEach(function(item) {
+        // Remove any existing listeners by cloning
+        const newItem = item.cloneNode(true);
+        item.parentNode.replaceChild(newItem, item);
         
-        // Prevent event from bubbling up
-        e.stopPropagation();
-      });
-      
-      // Handle sub-dropdown items
-      const dropdownItems = item.querySelectorAll('.dropdown > li');
-      dropdownItems.forEach(function(dropdownItem) {
-        dropdownItem.addEventListener('click', function(e) {
-          dropdownItem.classList.toggle('active');
+        newItem.addEventListener('click', function(e) {
+          // Toggle active class
+          newItem.classList.toggle('active');
           e.stopPropagation();
+        });
+        
+        // Handle sub-dropdown items
+        const dropdownItems = newItem.querySelectorAll('.dropdown > li');
+        dropdownItems.forEach(function(dropdownItem) {
+          dropdownItem.addEventListener('click', function(e) {
+            dropdownItem.classList.toggle('active');
+            e.stopPropagation();
+          });
+        });
+      });
+    } else {
+      // Remove mobile behavior on desktop (use CSS hover)
+      menuItems.forEach(function(item) {
+        item.classList.remove('active');
+        const dropdownItems = item.querySelectorAll('.dropdown > li');
+        dropdownItems.forEach(function(dropdownItem) {
+          dropdownItem.classList.remove('active');
         });
       });
     }
-  });
+  }
   
-  // Re-apply handlers on window resize
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      location.reload(); // Reload to re-apply handlers for mobile/desktop
-    }, 250);
-  });
+  // Initial setup
+  handleMobileMenu();
+  
+  // Re-apply on orientation/resize changes
+  mobileMediaQuery.addListener(handleMobileMenu);
 });
